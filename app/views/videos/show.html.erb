@@ -1,7 +1,21 @@
 <p><%= @video.name %></p>
-<p><%= @video.url %></p>
+
 
 <% if current_user == @video.user %>
   <%= link_to  "Edit video", edit_video_path(@video) %>
   <%= link_to  "Delete video", video_path(@video), method: :delete %>
 <% end %>
+
+
+<video id=video width=960 height=540 class="video-js vjs-default-skin" controls>
+  <source
+     src=<%= @video.url %>
+     type="application/x-mpegURL">
+</video>
+
+<script src="video.js"></script>
+<script src="videojs.hls.min.js"></script>
+<script>
+var player = videojs('video');
+player.play();
+</script>
