@@ -1,2 +1,7 @@
 <p><%= @video.name %></p>
 <p><%= @video.url %></p>
+
+<% if current_user == @video.user %>
+  <%= link_to  "Edit video", edit_video_path(@video) %>
+  <%= link_to  "Delete video", video_path(@video), method: :delete %>
+<% end %>

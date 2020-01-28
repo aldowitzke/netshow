@@ -12,9 +12,6 @@ class VideosController < ApplicationController
   end
 
   def create
-
-    binding.pry
-
     @video = Video.new(video_params)
     @video.user = current_user
 
@@ -28,7 +25,7 @@ class VideosController < ApplicationController
   def update
     @video = Video.find(params[:id])
 
-    if @video.update(video_params)
+    if @video.user == current_user && @video.update(video_params)
       redirect_to @video
     else
       render :edit

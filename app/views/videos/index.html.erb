@@ -1,8 +1,15 @@
-<%= link_to  "Create video", new_video_path %>
+<% if user_signed_in? %>
+  <%= link_to  "Create video", new_video_path %>
+<% else %>
+  <%= link_to  "Login",  new_user_session %>
+  <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
 
 <% if @videos %>
   <% @videos.each do |video| %>
     <%= video.name %>
     <%= video.url %>
   <% end %>
+<% else %>
+  <p>There are no videos yet</p>
 <% end %>
