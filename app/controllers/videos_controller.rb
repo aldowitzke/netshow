@@ -7,8 +7,16 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
   end
 
+  def new
+    @video = Video.new
+  end
+
   def create
+
+    binding.pry
+
     @video = Video.new(video_params)
+    @video.user = current_user
 
     if @video.save
       redirect_to @video
@@ -41,6 +49,6 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:name, :url)
+    params.require(:video).permit(:name, :url, :user)
   end
 end

@@ -1,0 +1,7 @@
+<%= form_for @video do |f| %>
+  <p><%= f.label :name, 'Video title' %></p>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.label :url, 'Video URL' %></p>
+  <p><%= f.text_field :url %></p>
+  <%= f.submit "Create" %>
+<% end %>

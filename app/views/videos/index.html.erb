@@ -1,0 +1,8 @@
+<%= link_to  "Create video", new_video_path %>
+
+<% if @videos %>
+  <% @videos.each do |video| %>
+    <%= video.name %>
+    <%= video.url %>
+  <% end %>
+<% end %>
