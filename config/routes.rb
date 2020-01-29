@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "videos#index"
 
   resources :videos
+  get "/my-videos", to: "videos#my_videos"
 end

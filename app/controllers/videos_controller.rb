@@ -38,9 +38,13 @@ class VideosController < ApplicationController
 
   def destroy
     video = Video.find(params[:id])
-    video.destroy
+    video.destroy if video.user == current_user
 
     redirect_to root_path
+  end
+
+  def my_videos
+    @videos = Video.where(user_id: current_user.id)
   end
 
   private
