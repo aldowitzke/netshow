@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container text-center">
   <% if user_signed_in? %>
-    <%= link_to  "Create video", new_video_path %>
+    <%= link_to  "Create video", new_video_path, class: "btn btn-flat mb-5" %>
   <% else %>
-    <%= link_to  "Login",  new_user_session_path %>
-    <%= link_to "Sign up", new_user_registration_path %>
+    <%= link_to  "Login",  new_user_session_path, class: "btn btn-flat" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-gradient" %>
   <% end %>
 
   <% if @videos %>
@@ -19,7 +19,4 @@
   <% else %>
     <p>There are no videos yet</p>
   <% end %>
-</div>
-
-
 </div>
