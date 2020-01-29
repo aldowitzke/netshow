@@ -1,15 +1,25 @@
-<% if user_signed_in? %>
-  <%= link_to  "Create video", new_video_path %>
-<% else %>
-  <%= link_to  "Login",  new_user_session_path %>
-  <%= link_to "Sign up", new_user_registration_path %>
-<% end %>
-
-<% if @videos %>
-  <% @videos.each do |video| %>
-    <%= video.name %>
-    <%= video.url %>
+<div class="container">
+  <% if user_signed_in? %>
+    <%= link_to  "Create video", new_video_path %>
+  <% else %>
+    <%= link_to  "Login",  new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path %>
   <% end %>
-<% else %>
-  <p>There are no videos yet</p>
-<% end %>
+
+  <% if @videos %>
+    <div class="cards">
+      <% @videos.each do |video| %>
+        <%= link_to video_path(video) do %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://picsum.photos/id/<%= rand(1..500) %>/500)">
+            <%= video.name %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>There are no videos yet</p>
+  <% end %>
+</div>
+
+
+</div>
