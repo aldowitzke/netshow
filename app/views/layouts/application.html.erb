@@ -3,7 +3,6 @@
   <head>
     <title>Netshow</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
@@ -13,8 +12,11 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+      <p class="notice alert flash flash-success"><%= notice %></p>
+    <% elsif alert %>
+      <p class="alert alert flash flash-danger"><%= alert %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
