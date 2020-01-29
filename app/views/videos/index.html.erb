@@ -1,13 +1,14 @@
 <div class="container text-center">
   <% if user_signed_in? %>
-    <%= link_to  "Create video", new_video_path, class: "btn btn-flat mb-5" %>
+    <%= link_to  "Create video", new_video_path, class: "btn btn-success" %>
+    <%= link_to  "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
   <% else %>
-    <%= link_to  "Login",  new_user_session_path, class: "btn btn-flat" %>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-gradient" %>
+    <%= link_to  "Login",  new_user_session_path, class: "btn btn-primary" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-secondary" %>
   <% end %>
 
   <% if @videos %>
-    <div class="cards">
+    <div class="cards mt-5">
       <% @videos.each do |video| %>
         <%= link_to video_path(video) do %>
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://picsum.photos/id/<%= rand(1..500) %>/500)">
