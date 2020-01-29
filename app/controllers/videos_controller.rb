@@ -25,12 +25,7 @@ class VideosController < ApplicationController
   def update
     @video = Video.find(params[:id])
 
-    if @video.user == current_user && @video.update(video_params)
-      redirect_to @video
-    else
-      flash[:danger] = "You can only edit your own videos."
-      render :edit
-    end
+    video_update(@video)
   end
 
   def edit
@@ -52,5 +47,17 @@ class VideosController < ApplicationController
 
   def video_params
     params.require(:video).permit(:name, :url, :user)
+  end
+
+  def video_update(video)
+    if @video.user == current_user && @video.update(video_params)
+      redirect_to @video
+    elsif video.user != current_user && @video.update(video_params)
+      flash[:danger] = "You can only edit your own videos."
+      render :edit
+    else
+      flash[:danger] = "Title and URL required."
+      render :edit
+    end
   end
 end
