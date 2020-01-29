@@ -28,6 +28,7 @@ class VideosController < ApplicationController
     if @video.user == current_user && @video.update(video_params)
       redirect_to @video
     else
+      flash[:danger] = "You can only edit your own videos."
       render :edit
     end
   end
