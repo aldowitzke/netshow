@@ -1,5 +1,17 @@
-<h1>My videos</h1>
+<div class="container text-center">
+  <h1>My videos</h1>
 
-<% @videos.each do |video| %>
-  <%= link_to video.name, video_path(video) %>
-<% end %>
+  <% if @videos %>
+    <div class="cards mt-5">
+      <% @videos.each do |video| %>
+        <%= link_to video_path(video) do %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://picsum.photos/id/<%= rand(1..500) %>/500)">
+            <%= video.name %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>You have no videos yet</p>
+  <% end %>
+</div>
