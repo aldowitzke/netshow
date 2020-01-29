@@ -1,11 +1,14 @@
 <div class="container text-center">
-  <% if user_signed_in? %>
-    <%= link_to  "Create video", new_video_path, class: "btn btn-success" %>
-    <%= link_to  "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
-  <% else %>
-    <%= link_to  "Login",  new_user_session_path, class: "btn btn-primary" %>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-secondary" %>
-  <% end %>
+  <div class="mt-5">
+    <% if user_signed_in? %>
+      <%= link_to  "Create video", new_video_path, class: "btn btn-success" %>
+      <%= link_to  "My videos", my_videos_path, class: "btn btn-secondary" %>
+      <%= link_to  "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+    <% else %>
+      <%= link_to  "Login",  new_user_session_path, class: "btn btn-primary" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-secondary" %>
+    <% end %>
+  </div>
 
   <% if @videos %>
     <div class="cards mt-5">
