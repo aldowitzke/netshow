@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @video = Video.find(params[:id])
+    set_video
   end
 
   def new
@@ -19,18 +19,19 @@ class VideosController < ApplicationController
     if @video.save
       redirect_to @video
     else
+      flash[:alert] = @video.errors.full_messages.join(", ")
       render :new
     end
   end
 
   def update
-    @video = Video.find(params[:id])
+    set_video
 
     video_update(@video)
   end
 
   def edit
-    @video = Video.find(params[:id])
+    set_video
   end
 
   def destroy
@@ -45,7 +46,7 @@ class VideosController < ApplicationController
   end
 
   def increase_view
-    @video = Video.find(params[:id])
+    set_video
     @video.update(video_params)
   end
 
@@ -55,10 +56,17 @@ class VideosController < ApplicationController
     params.require(:video).permit(:name, :url, :user, :view)
   end
 
+  def set_video
+    @video = Video.find(params[:id])
+  end
+
   def video_update(video)
     if @video.user == current_user && @video.update(video_params)
       redirect_to @video
     elsif video.user != current_user && @video.update(video_params)
+
+      binding.pry
+
       flash[:danger] = "You can only edit your own videos."
       render :edit
     else
