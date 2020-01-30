@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
     @videos = Video.all
   end
@@ -14,6 +16,7 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     @video.user = current_user
+    @video.view = 0
 
     if @video.save
       redirect_to @video
@@ -43,10 +46,15 @@ class VideosController < ApplicationController
     @videos = Video.where(user_id: current_user.id)
   end
 
+  def increase_view
+    @video = Video.find(params[:id])
+    @video.update(video_params)
+  end
+
   private
 
   def video_params
-    params.require(:video).permit(:name, :url, :user)
+    params.require(:video).permit(:name, :url, :user, :view)
   end
 
   def video_update(video)
