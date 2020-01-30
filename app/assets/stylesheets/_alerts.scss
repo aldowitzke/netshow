@@ -1,18 +1,18 @@
 .flash {
-  padding: 16px 24px !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  background: white !important;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2) !important;
-  border-radius: 4px !important;
-  margin: 8px !important;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  margin: 8px;
 }
 
-.flash-danger {
-  border: 2px solid #FD1015 !important;
+p.flash-danger {
+  border: 2px solid #FD1015;
 }
 
-.flash-success {
-  border: 2px solid #1EDD88 !important;
+p.flash-success {
+  border: 2px solid #1EDD88;
 }
