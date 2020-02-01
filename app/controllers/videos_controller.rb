@@ -13,8 +13,7 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params)
-    @video.user = current_user
-    @video.view = 0
+    @video.assign_attributes(user: current_user, view: 0)
 
     if @video.save
       redirect_to @video
