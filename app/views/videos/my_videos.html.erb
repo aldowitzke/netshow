@@ -1,7 +1,7 @@
 <div class="container text-center">
   <h1>My videos</h1>
 
-  <% if @videos %>
+  <% if @videos.present? %>
     <div class="cards mt-5">
       <% @videos.each do |video| %>
         <%= link_to video_path(video) do %>
@@ -12,6 +12,9 @@
       <% end %>
     </div>
   <% else %>
-    <p>You have no videos yet</p>
+    <div class="mt-5">
+      <p>You have no videos yet</p>
+      <%= link_to  "Create one!", new_video_path, class: 'btn btn-success' %>
+    </div>
   <% end %>
 </div>
